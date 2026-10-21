@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slow Pour &mdash; A Coffee Ritual</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --espresso:#2B1B12;
+    --cream:#F3E9DB;
+    --caramel:#A9683C;
+    --sage:#6B7859;
+    --paper:#FFFDF9;
+  }
+
+  *{ box-sizing: border-box; }
+
+  body{
+    margin: 0;
+    background: var(--cream);
+    color: var(--espresso);
+    font-family: 'Work Sans', sans-serif;
+    line-height: 1.6;
+  }
+
+  h1, h2{
+    font-family: 'Fraunces', serif;
+    margin: 0;
+    color: var(--espresso);
+  }
+
+  a{ color: var(--caramel); }
+
+  /* ---------- NAV ---------- */
+  nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 60px;
+  }
+
+  nav span{
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 22px;
+  }
+
+  nav a{
+    text-decoration: none;
+    color: var(--espresso);
+    font-size: 15px;
+    margin-left: 28px;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    align-items: center;
+    padding: 20px 60px 80px;
+    gap: 40px;
+  }
+
+  .hero h1{
+    font-size: 58px;
+    font-weight: 600;
+    line-height: 1.08;
+    max-width: 480px;
+  }
+
+  .hero p{
+    max-width: 420px;
+    font-size: 17px;
+    color: #4a372c;
+    margin: 22px 0 30px;
+  }
+
+  .hero-img{
+    width: 100%;
+    height: 460px;
+    object-fit: cover;
+    box-shadow: 0 24px 60px rgba(43,27,18,0.35);
+  }
+
+  button.cta{
+    background: linear-gradient(135deg, var(--caramel), #7d431f);
+    color: var(--paper);
+    border: none;
+    padding: 15px 30px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: 'Work Sans', sans-serif;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(169,104,60,0.4);
+  }
+
+  button.cta:hover{ background: linear-gradient(135deg, #b8753f, var(--caramel)); }
+
+  button.cta:focus-visible{ outline: 3px solid var(--sage); outline-offset: 3px; }
+
+  hr{
+    border: none;
+    border-top: 1px solid rgba(43,27,18,0.15);
+    margin: 0 60px;
+  }
+
+  /* ---------- MENU / ORIGIN ---------- */
+  .origin{
+    padding: 70px 60px;
+  }
+
+  .origin h2{
+    font-size: 34px;
+    margin-bottom: 34px;
+  }
+
+  .origin-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-top: 1px solid rgba(43,27,18,0.2);
+  }
+
+  .origin-item{
+    padding: 26px 24px;
+    border-right: 1px solid rgba(43,27,18,0.2);
+    border-bottom: 1px solid rgba(43,27,18,0.2);
+  }
+
+  .origin-item:last-child{ border-right: none; }
+
+  .origin-item strong{
+    display: block;
+    font-size: 18px;
+    margin-bottom: 6px;
+  }
+
+  .origin-item em{
+    color: var(--sage);
+    font-style: italic;
+    font-size: 14px;
+  }
+
+  .origin-item span{
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #4a372c;
+  }
+
+  /* ---------- BREW MATCHER (interactive) ---------- */
+  .matcher{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+    padding: 80px 60px;
+    background: var(--espresso);
+    color: var(--cream);
+  }
+
+  .matcher h2{ color: var(--cream); font-size: 32px; margin-bottom: 16px; }
+
+  .matcher p{ color: #d8c9b6; font-size: 16px; max-width: 420px; }
+
+  .matcher-img{
+    width: 100%;
+    height: 340px;
+    object-fit: cover;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  }
+
+  #result{
+    margin-top: 22px;
+    padding: 18px 22px;
+    background: rgba(243,233,221,0.08);
+    border-left: 3px solid var(--caramel);
+    font-size: 15px;
+    min-height: 20px;
+    display: none;
+  }
+
+  #result.show{ display: block; }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    padding: 40px 60px 50px;
+    text-align: center;
+    font-size: 13px;
+    color: #7a6653;
+  }
+
+  @media (max-width: 820px){
+    .hero, .matcher{ grid-template-columns: 1fr; padding: 40px 24px; }
+    .origin{ padding: 50px 24px; }
+    .origin-grid{ grid-template-columns: 1fr; }
+    .origin-item{ border-right: none; }
+    nav{ padding: 20px 24px; flex-direction: column; gap: 10px; }
+    .hero h1{ font-size: 40px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span>Slow Pour</span>
+  <div>
+    <a href="#origin">Origins</a>
+    <a href="#matcher">Find Your Brew</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div>
+    <h1>Coffee is a <em>ritual</em>, not a routine.</h1>
+    <p>Every cup starts as a cherry on a hillside. We roast in small batches and brew slow, because rushing the process only rushes the flavor away.</p>
+    <button class="cta" id="startBtn">Find your brew</button>
+  </div>
+  <img class="hero-img" src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=900&q=80" alt="Coffee cup being poured on a wooden table">
+</section>
+
+<hr>
+
+<section class="origin" id="origin">
+  <h2>Where the beans come from</h2>
+  <div class="origin-grid">
+    <div class="origin-item">
+      <strong>Yirgacheffe, Ethiopia</strong>
+      <em>Washed &middot; Light roast</em>
+      <span>Bright, floral, with a jasmine and citrus finish that lingers.</span>
+    </div>
+    <div class="origin-item">
+      <strong>Huila, Colombia</strong>
+      <em>Honey processed &middot; Medium roast</em>
+      <span>Caramel sweetness balanced by a soft red-apple acidity.</span>
+    </div>
+    <div class="origin-item">
+      <strong>Mandheling, Sumatra</strong>
+      <em>Wet-hulled &middot; Dark roast</em>
+      <span>Earthy and heavy-bodied, with notes of cedar and dark chocolate.</span>
+    </div>
+  </div>
+</section>
+
+<section class="matcher" id="matcher">
+  <div>
+    <h2>Find your brew</h2>
+    <p>Answer two quick questions and we'll match you to a roast and a brewing method worth waking up for.</p>
+    <button class="cta" id="matchBtn">Start the quiz</button>
+    <div id="result"></div>
+  </div>
+  <img class="matcher-img" src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=80" alt="Roasted coffee beans in a pile">
+</section>
+
+<footer>
+  <p>Slow Pour &mdash; roasted with patience. <a href="#matcher">Take the quiz above</a> if you haven't already.</p>
+</footer>
+
+<script>
+  let quizStarted = false;
+
+  const resultBox = document.getElementById('result');
+  const matchBtn = document.getElementById('matchBtn');
+  const startBtn = document.getElementById('startBtn');
+
+  function runQuiz(event) {
+    quizStarted = true;
+
+    let strength = prompt("How do you like your coffee: strong or mild?");
+    if (strength) {
+      strength = strength.trim().toLowerCase();
+    }
+
+    let time = prompt("Do you want it quick or are you happy to wait a few minutes?");
+    if (time) {
+      time = time.trim().toLowerCase();
+    }
+
+    let roast = "";
+    let method = "";
+
+    if (strength === "strong") {
+      roast = "Sumatra Mandheling, dark roast";
+      if (time === "quick") {
+        method = "moka pot";
+      } else {
+        method = "French press";
+      }
+    } else if (strength === "mild") {
+      roast = "Yirgacheffe, light roast";
+      if (time === "quick") {
+        method = "AeroPress";
+      } else {
+        method = "pour-over";
+      }
+    } else {
+      alert("No worries — start with our house blend, it splits the difference.");
+      roast = "Huila house blend, medium roast";
+      method = "drip brew";
+    }
+
+    resultBox.textContent = "Your match: " + roast + ", brewed as a " + method + ".";
+    resultBox.classList.add('show');
+  }
+
+  matchBtn.addEventListener('click', runQuiz);
+  startBtn.addEventListener('click', function(event){
+    document.getElementById('matcher').scrollIntoView({ behavior: 'smooth' });
+  });
+</script>
+
+</body>
+</html>

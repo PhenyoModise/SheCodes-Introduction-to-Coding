@@ -1,0 +1,113 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeatherInYourCity</title>
+</head>
+<body>
+    <style>
+    h1{
+        text-align: center;
+        color: rgb(76, 222, 225);
+    }
+    h2{
+        text-align: center;
+        font-weight: normal;
+    }
+
+    ul{
+        list-style-type: none;
+        padding: 2px;
+        text-align: center;
+    }
+    
+    li{
+        padding: 3px;
+        margin: 0 auto;
+        max-width: 300px;
+        border-radius: 10px;
+
+    }
+    
+    li:hover{
+        background:rgb(24, 124, 140)
+       
+    }
+
+
+    button{
+      margin: 20px auto;
+        display: block;
+        color: #000000;
+        font-size: 17px;
+        background: #75c1ee;
+        padding: 15px 20px;
+        border-radius: 50px; /* rounds the corners of the button */
+        box-shadow: 7px 5px 10px rgba(0, 0, 0, 0.2);
+        transition: all 200ms ease-in-out;
+    }
+
+    button:hover{
+    background: #4be44e;
+    color: white;
+    cursor: pointer;
+    }
+
+    .details{
+        text-align: center;
+        font-weight: thin;
+        color:rgb(84, 80, 80)
+    }
+</style>
+
+
+<div class="weather">
+<h1>⛅
+    <br>
+     Currently 21°C in Kempton Park, South Africa</h1>
+
+<h2> 21°C/ <strong>24°C</strong></h2>
+</div>
+
+<ul>
+    <li><h3>🌥️Monday</h3>
+        <p>20°C / <strong>24°C</strong></p>
+    </li>
+    <li><h3>⛈️Tuesday</h3>
+        <p>16°C / <strong>19°C</strong></p>
+    </li>
+    <li><h3>🌦️Wednesday</h3>
+        <p>18°C / <strong>22°C</strong></p>
+    </li>
+</ul>
+
+<button>Change City</button>
+
+</br>
+
+<div class= "details">
+<p>
+    <h4>Coded by Phenyo. M</h4>
+</p>
+</div>
+
+<script>
+    function changeCity() {
+      let city = prompt("What is your city name?");
+      let temperature = prompt("Whats the temperature in your city?");
+      let heading = document.querySelector("h1");
+
+    if (temperature >= 20) {
+    heading.innerHTML = "🌞<br /> It is currently " + temperature + "°C in " + city;
+    } else if(temperature <= 10) {
+        heading.innerHTML = "🥶<br /> It is currently " + temperature + "°C in " + city;
+    } else {
+        heading.innerHTML = "⛅<br /> It is currently " + temperature + "°C in " + city;
+    }
+}
+    let changeCityButton = document.querySelector("button");
+    changeCityButton.addEventListener("click", changeCity);
+
+</script>
+</body>
+</html>
